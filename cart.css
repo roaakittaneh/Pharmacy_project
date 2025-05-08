@@ -1,0 +1,231 @@
+
+p{
+    font-size: 20px;
+    font-family: 'comfortaa', sans-serif;
+    }
+    .header{
+    
+     
+     
+      font-weight: bold;
+     
+    
+      display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+        padding: 15px ;
+    margin: 15px;
+     
+    
+    
+    }
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 5px solid rgb(255, 255, 255);
+        padding: 15px ;
+    margin: 15px;
+    }
+    .container{
+    
+     
+      overflow: auto; 
+     width: 400px;
+      background-color: rgb(184, 208, 237);
+      border-radius: 20px;
+    margin: 10px 10px;
+    box-sizing: border-box;
+    position: relative;
+    max-width: 600px;
+    height: auto;
+    margin-top: 100px;
+    
+     
+    }
+    @media (min-width: 768px) {
+      .container {
+          width: 750px;
+    
+      }
+    }
+    @media (max-width: 767px) {
+      .container {
+          width: 400px;
+    
+      }
+    }
+    
+    
+    .container2{
+    
+       height: 300px;
+       width: 300px;
+      display: flex;
+      flex-direction: column;
+        background-color: rgb(203, 203, 203);
+        border-radius: 20px;
+        align-items: center;
+        justify-content:center;
+        box-sizing: border-box;
+ 
+        overflow: auto; 
+        max-height: 500px;
+        position: relative;
+        margin-top: 30px;
+       
+        
+       
+    
+    
+    }
+   
+    .all {
+        margin-top: 0; /* Ensure content starts immediately below the navbar */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: static;
+    }
+  
+    
+    body, html {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column; /* Arrange content in a column layout */
+      margin: 0; /* Remove default margin to prevent spacing issues */
+      padding: 0;
+     
+  }
+    
+    #customer_details{
+        display: none;
+    }
+    img{
+    
+        width: 35px;
+        height: 67px;
+        border-radius: 5%;
+      
+    }
+    button:hover{
+        background-color: rgba(49, 96, 235, 0.703);
+        transition: background-color .3s ease;
+    
+    }
+    button {
+      font-family: 'comfortaa', sans-serif;
+    }
+    
+    
+        #total{
+    margin: 0 0 50px;
+    font-size: 35px;
+    
+        }
+      #btn2{
+    
+    
+        margin-left: 30px;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 70px;
+        background-color: rgba(49, 96, 235, 0.703);
+        width: 100%;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-family: 'comfortaa', sans-serif;
+    }
+    
+    i {
+        font-size: 30px;
+        color: rgb(253, 254, 255);
+    }
+    
+    .logo h3 {
+        color: rgb(253, 254, 255);
+        font-size: 30px;
+
+        margin: 0 0 8px;
+    }
+    
+    .nav a {
+        text-decoration: none;
+        color: rgb(253, 254, 255);
+        font-size: 20px;
+        font-weight: 700;
+        margin: 20px;
+        padding: 13px;
+        transition: all 0.1s ease;
+        font-family: 'comfortaa', sans-serif;
+    }
+    
+    .nav a:hover {
+        border: none;
+        background-color: rgba(49, 96, 235, 0.703);
+        color: aliceblue;
+        border-radius: 50px;
+    }
+    
+    
+    .home {
+        width: 100%; /* Ensure the navbar spans the entire width */
+       
+    }
+    
+    
+    
+    
+    /* Media Query for responsiveness */
+    @media (max-width: 768px) {
+        nav {
+            flex-direction: column;
+            align-items: flex-start;
+            height: auto;
+            padding: 10px;
+        }
+    
+        .logo {
+            margin-bottom: 10px;
+        }
+    
+        .nav {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+    
+        .nav a {
+            margin: 10px 0;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: left;
+        }
+
+
+      }
+ 
+      .swal2-popup{
+        font-family: 'comfortaa', sans-serif;
+        font-size: 15px;
+      }
+      
+
+
+
+
+
+
+
+ 

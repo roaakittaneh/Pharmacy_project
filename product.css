@@ -1,0 +1,169 @@
+
+.card {
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-header {
+    background-color: rgba(49, 96, 235, 0.703);
+    color: rgb(253, 254, 255);
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'comfortaa', sans-serif;
+    -webkit-user-select: none;
+    user-select: none;
+    scroll-behavior: smooth;
+  
+    
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 70px;
+    background-color: rgba(49, 96, 235, 0.703);
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+font-family: 'comfortaa', sans-serif;
+}
+
+i {
+    font-size: 30px;
+    color: rgb(253, 254, 255);
+}
+
+.logo h3 {
+    color: rgb(253, 254, 255);
+    font-size: 30px;
+    font-family: 'comfortaa', sans-serif;
+}
+
+.logo {
+    text-decoration: none;
+}
+.nav{
+    display: block;
+}
+
+.nav a {
+    text-decoration: none;
+    color: rgb(253, 254, 255);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 20px 0 20px;
+    padding: 13px;
+    transition: all 0.1s ease;
+    font-family: 'comfortaa', sans-serif;
+}
+
+.nav a:hover {
+    border: none;
+    background-color: #4e88e6;
+    color: aliceblue;
+    border-radius: 50px;
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 10px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .nav a {
+        margin: 10px 0;
+        padding: 10px 20px;
+        width: 100%;
+        text-align: left;
+        font-family: 'comfortaa', sans-serif;
+    }
+}
+
+.btn-cart {
+    background-color: #6c757d;
+    /* Blue background color */
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    /* White text color */
+    border-radius: 5px;
+    /* Rounded corners */
+    margin-left: 50px;
+}
+
+.btn-cart:hover {
+    background-color:rgba(49, 96, 235, 0.703);
+    /* Darker blue on hover */
+}
+
+/* CSS for zoom effect */
+.img-thumbnail {
+    transition: transform 0.25s ease; /* Smooth transition for zoom */
+    cursor: zoom-in; /* Change cursor to indicate zoom */
+}
+
+.img-thumbnail.zoomed {
+    transform: scale(2); /* Zoom in on the image */
+    cursor: zoom-out; /* Change cursor when zoomed */
+}
+h4{
+    display: inline;
+    padding: 10px;
+    font-family: 'comfortaa', sans-serif;
+    
+}
+.btn-learn {
+margin-left: 80px;
+}
+
+
+@media (min-width: 991px){
+    .btn-cart {
+       
+        margin-left: 10px;
+    }
+    .btn-learn {
+    margin-left: 30px;
+    }
+
+}
+.btn-learn:hover {
+    background-color:rgba(49, 96, 235, 0.703);
+    /* Darker blue on hover */
+}

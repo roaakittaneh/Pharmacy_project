@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping Cart</title>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Oswald:wght@200..700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+    <div class="home">
+        <nav>
+            <a class="logo">
+                <i class="fa-solid fa-leaf"></i>
+                <h3>pharmacy</h3>
+            </a>
+            <div class="nav">
+                <a href="home.html">Home</a>
+                <a href="product.html">Products</a>
+                <a href="home.html#about_us">About Us</a>
+                <a href="cart.html">My Cart</a>
+                <a href="http://localhost/phpuser/signup.php">sign up</a>
+            </div>
+        </nav>
+    </div>
+    
+    <div class="all">
+        <div class="container">
+            <h3 id="p">Shopping Cart</h3>
+            <hr style="border: 2px solid white;">
+            <div class="header">
+                <p>Image</p>
+                <p>Name</p>
+                <p>Quantity</p>
+                <p>Price</p>
+                <p></p>
+            </div>
+
+            <div class="cart-items-container">
+                <!-- Cart items will be displayed here dynamically -->
+            </div>
+
+          
+           
+        </div>
+        <br><br><br><br>
+        <hr style="border: 2px solid rgb(184, 208, 237); width: 1305px;">
+        <br><br>
+        <div class="container2">
+            <p id="total">Total: $0</p>
+            <button id="btn1" onclick="showForm()" class="btn">Book and Pick Up</button>
+            
+            <br>
+            <div id="customer_details">
+                <form method="get">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" name="fullName" id="fullName" class="form-control">
+                    <br><br>
+                    <label for="phone">Phone Number</label>
+                    <input type="phone" name="phone" id="phone" class="form-control">
+                    <br><br>
+                    <button onclick="showOrderNum()" class="btn" id="btn2">Click & Collect</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    
+      // Products list
+      const products = [
+        { name: "Amoxicillin", price: 12, image: "Amoxicillin.jpeg" },
+        { name: "Metformin", price: 15, image: "Metformin.jpeg" },
+        { name: "Ibuprofen", price: 8, image: "Ibuprofen.jpeg" },
+        { name: "Paracetamol", price: 5, image: "Paracetamol.jpg" },
+      ];
+
+      // Function to add products to the cart dynamically
+      function displayProducts() {
+        let productsContainer = document.querySelector(".cart-items-container");
+        productsContainer.innerHTML = ""; // Clear any previous products
+        products.forEach((product) => {
+          let productDiv = document.createElement("div");
+          productDiv.classList.add("product");
+          productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="item-img">
+                    <p class="product-name">${product.name}</p>
+                    <p class="price">${product.price}$</p>
+                    <button class="btn" onclick="addToCart('${product.name}', ${product.price}, '${product.image}')">Add to Cart</button>
+                `;
+          productsContainer.appendChild(productDiv);
+        });
+      }
+
+      // Function to add product to the cart
+      function addToCart(name, price, image) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let itemIndex = cart.findIndex((item) => item.name === name);
+
+        if (itemIndex > -1) {
+          // If item is already in the cart, increase the quantity
+          cart[itemIndex].quantity += 1;
+        } else {
+          // If item is not in the cart, add it with quantity 1
+          cart.push({ name, price, quantity: 1, image });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCart();
+      }
+
+      // Function to remove product from the cart
+      function removeItem(itemName) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart = cart.filter((item) => item.name !== itemName);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCart();
+      }
+
+      // Function to update the cart display
+      function updateCart() {
+        let cartContainer = document.querySelector(".cart-items-container");
+        let total = 0;
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        console.log(cart);
+        cartContainer.innerHTML = ""; // Clear cart container
+
+        cart.forEach((item) => {
+          let cartItemDiv = document.createElement("div");
+          cartItemDiv.classList.add("cart-item");
+          cartItemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${
+            item.name
+          }" class="item-img">
+                    <div class="product-details">
+                        <p class="product-name">${item.name}</p>
+                    </div>
+                    <div class="quantity">
+                        <p>${item.quantity}</p>
+                    </div>
+                    <p class="price">${item.quantity * item.price}$</p>
+                    <div class="container_fluid">
+                        <button class="btn" onclick="removeItem('${
+                          item.name
+                        }')">×</button>
+                    </div>
+                `;
+          cartContainer.appendChild(cartItemDiv);
+          total += item.quantity * item.price;
+        });
+
+        document.getElementById("total").innerText = `Total: $${total}`;
+      }
+
+      // Initialize the page
+      window.onload = function () {
+        displayProducts();
+        updateCart();
+      };
+
+      function showForm() {
+        document.getElementById("customer_details").style.display = "block";
+        document.getElementById("btn1").style.display = "none";
+        document.getElementById("total").style.display = "none";
+      }
+      let lastOrderId = sessionStorage.getItem("lastOrderId") 
+                      ? parseInt(sessionStorage.getItem("lastOrderId")) 
+                      : 0;
+      function showOrderNum() {
+        event.preventDefault();
+        let name = document.getElementById("fullName").value;
+        let phone = document.getElementById("phone").value;
+
+       
+
+
+  
+  if (name && phone) {
+    lastOrderId++; // زيادة الرقم بشكل تلقائي
+    sessionStorage.setItem("lastOrderId", lastOrderId);
+    Swal.fire({
+      title: "Order Confirmed!",
+      html: `<p >Your order has been successfully booked. The order number is: <span style="color: red;">${lastOrderId}</span> Please visit the pharmacy for pickup.</p>`,      icon: "success",
+      confirmButtonText: "OK",
+      allowOutsideClick: false,
+      customClass: {
+        popup: 'swal2-popup',
+        title: 'swal2-title',
+        content: 'swal2-content',
+        confirmButton: 'swal2-confirm',
+      },
+      willOpen: () => {
+        Swal.getPopup().style.padding = '20px';
+        Swal.getPopup().style.width = '400px';
+      }
+    });
+  } else {
+    Swal.fire({
+      title: "Missing Data",
+      text: "Please enter all required data",
+      icon: "warning",
+      confirmButtonText: "OK",
+      allowOutsideClick: false,
+      customClass: {
+        popup: 'swal2-popup',
+        title: 'swal2-title',
+        content: 'swal2-content',
+        confirmButton: 'swal2-confirm',
+      },
+      willOpen: () => {
+        Swal.getPopup().style.padding = '20px';
+      }
+    });
+  }
+}
+
+   
+    </script>
+
+</body>
+</html>
